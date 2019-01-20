@@ -485,6 +485,11 @@ if "CC" in os.environ:
     env["CC"] = os.path.expanduser(os.environ["CC"])
     env["CCVERSION"] = None
     found_gcc = True
+elif getBoolOption("sysconfig_mode", False):
+    import sysconfig
+    env["CC"] = sysconfig.get_config_vars('CC')
+    env["CCVERSION"] = None
+    found_gcc = True if 'gcc' in env["CC"] else False
 elif clang_mode:
     # If requested by the user, use the clang compiler, overriding what was
     # said in environment.
@@ -691,6 +696,14 @@ if not os.path.exists(sconsign_dir):
     os.makedirs(sconsign_dir)
 
 env.SConsignFile(sconsign_dir)
+
+if getBoolOption("sysconfig_mode"):
+    env.Append(
+        CCFLAGS = sysconfig.get_config_vars("PY_CORE_CFLAGS")
+    )
+    env.Append(
+        CXXFLAGS = sysconfig.get_config_vars("PY_CORE_CFLAGS")
+    )
 
 if gcc_mode:
     # Support for gcc and clang, restricting visibility as much as possible.

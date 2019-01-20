@@ -300,6 +300,10 @@ def isMingw64():
     return options.mingw64
 
 
+def isSysconfig():
+    return options.cc_per_sysconfig
+
+
 def getMsvcVersion():
     return options.msvc
 

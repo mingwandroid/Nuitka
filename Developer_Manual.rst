@@ -747,6 +747,10 @@ What follows is the (lengthy) list of arguments that the scons file processes:
 
   MinGW compiler mode, optional and useful on Windows only.
 
+* ``sysconfig_mode``
+
+  sysconfig compiler mode, uses values from distutil's sysconfig module.
+
 * ``standalone_mode``
 
   Building a standalone distribution for the binary.

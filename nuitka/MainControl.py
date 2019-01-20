@@ -560,6 +560,9 @@ def runScons(main_module, quiet):
     if Options.isClang():
         options["clang_mode"] = "true"
 
+    if Options.isSysconfig():
+        options["sysconfig_mode"] = "true"
+
     if Options.getIconPath():
         options["icon_path"] = Options.getIconPath()
 

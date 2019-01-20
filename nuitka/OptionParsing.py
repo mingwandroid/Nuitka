@@ -582,6 +582,17 @@ Defaults to off."""
 )
 
 c_compiler_group.add_option(
+    "--cc-per-sysconfig",
+    action  = "store_true",
+    dest    = "cc_per_sysconfig",
+    default = False,
+    help    = """\
+Enforce the use of the compiler baked into the running Python interpreter's
+sysconfig module.
+Defaults to off."""
+)
+
+c_compiler_group.add_option(
     "--msvc",
     action  = "store",
     dest    = "msvc",
